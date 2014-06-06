@@ -1,0 +1,16 @@
+0000000000000000000000000000000000000000 de5042b47d52a325a163a4f08e4c367fa363066a Tann <bonk@ThreeChoiceGames.com> 1401756817 +0100	commit (initial): Project created
+de5042b47d52a325a163a4f08e4c367fa363066a eefd37fc3ed820fa4ac7130bdfe5a303f8a090de Tann <bonk@ThreeChoiceGames.com> 1401757112 +0100	commit: Moved image
+eefd37fc3ed820fa4ac7130bdfe5a303f8a090de abfea4c0545d0e6a081f0d03b4595022c6f095ce Tann <bonk@ThreeChoiceGames.com> 1401757132 +0100	revert: Revert "Moved image"
+abfea4c0545d0e6a081f0d03b4595022c6f095ce ddd53062cfffe59983efa6277d3691904d3cddc9 Tann <bonk@ThreeChoiceGames.com> 1401758760 +0100	commit: Walk cycle implemented
+ddd53062cfffe59983efa6277d3691904d3cddc9 4bd4b765b6989e15f44a4c3eb857a0390e29f289 Tann <bonk@ThreeChoiceGames.com> 1401770829 +0100	commit: Day's work
+4bd4b765b6989e15f44a4c3eb857a0390e29f289 08cb73fa98fd4aa8a6e0130c2e7f0971bc89584f Tann <bonk@ThreeChoiceGames.com> 1401814937 +0100	commit: Getting there
+08cb73fa98fd4aa8a6e0130c2e7f0971bc89584f 425ba81b5263cfd620a8679e7707dbca6a86e9dc Tann <bonk@ThreeChoiceGames.com> 1401850474 +0100	commit: shooting is in
+425ba81b5263cfd620a8679e7707dbca6a86e9dc 7cef1fb83e29ea5f3dc7c883b98fbc834cf7893a Tann <bonk@ThreeChoiceGames.com> 1401858111 +0100	commit: Rubbish jumping animation and raytracting
+7cef1fb83e29ea5f3dc7c883b98fbc834cf7893a f0703ed0b05a029291e096b06796a51a4759b948 Tann <bonk@ThreeChoiceGames.com> 1401931755 +0100	commit: Time to start adding enemies
+f0703ed0b05a029291e096b06796a51a4759b948 2ae77bfb5c0e37f3a43d381c9d92fb264b2dc875 Tann <bonk@ThreeChoiceGames.com> 1401942216 +0100	commit: testCommit
+2ae77bfb5c0e37f3a43d381c9d92fb264b2dc875 a6164e2c655af6bd717047195aeec613284759b8 Tann <bonk@ThreeChoiceGames.com> 1401947326 +0100	commit: 3 day's work. Big work day tomorrow I guess : )
+a6164e2c655af6bd717047195aeec613284759b8 9b47413090028ade15f7bdaaa0cda3b63de9f55f Tann <bonk@ThreeChoiceGames.com> 1402008773 +0100	commit: First boss battle working
+9b47413090028ade15f7bdaaa0cda3b63de9f55f 973c9372ae2b7e92e7de909e1b42e6889c13937d Tann <bonk@ThreeChoiceGames.com> 1402012882 +0100	commit: Web version working
+973c9372ae2b7e92e7de909e1b42e6889c13937d 7f52d26087489662a4fa0a14c0676fa374d940ed Tann <bonk@ThreeChoiceGames.com> 1402013441 +0100	revert: Revert "Web version working"
+7f52d26087489662a4fa0a14c0676fa374d940ed 0321bf4246548484823a255ab3a7442494484588 Tann <bonk@ThreeChoiceGames.com> 1402022026 +0100	commit: hopefully not broken?
+0321bf4246548484823a255ab3a7442494484588 221ca95aa7d183b5b44f7f2573c9f7c5d180d064 Tann <bonk@ThreeChoiceGames.com> 1402022197 +0100	commit: is broken : (
