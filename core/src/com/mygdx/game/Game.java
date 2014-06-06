@@ -131,7 +131,7 @@ public class Game extends ApplicationAdapter implements InputProcessor{
 		
 		switch(character){
 		case 'r':init(); break;
-	//	case 'w':System.out.println("w");Player.p.jump(); break;
+
 		}
 		
 		
