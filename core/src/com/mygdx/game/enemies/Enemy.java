@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.player.Arrow;
-import com.mygdx.game.utils.Collider;
+import com.mygdx.game.utils.maths.Collider;
 
 public abstract class Enemy {
 	public static ArrayList<Enemy> enemies= new ArrayList<Enemy>();

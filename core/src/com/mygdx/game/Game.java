@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -16,21 +17,24 @@ import com.mygdx.game.level.Platform;
 import com.mygdx.game.level.Fight.FightType;
 import com.mygdx.game.player.Arrow;
 import com.mygdx.game.player.Player;
-import com.mygdx.game.utils.BoxCollider;
-import com.mygdx.game.utils.CircleCollider;
 import com.mygdx.game.utils.Colors;
+import com.mygdx.game.utils.maths.BoxCollider;
+import com.mygdx.game.utils.maths.CircleCollider;
+import com.mygdx.game.utils.particles.Flame;
 
 public class Game extends ApplicationAdapter implements InputProcessor{
 	SpriteBatch batch;
 	ShapeRenderer sr;
-	BitmapFont f;
+	BitmapFont font;
 	public static int width=800;
 	public static int height=600;
 	Fight arena;
 	BoxCollider test= new BoxCollider(0, 0, 20,30);
+	Flame flame;
 	@Override
 	public void create () {
-		f= new BitmapFont();
+		flame=new Flame(0, 0, 100, 100);
+		font= new BitmapFont();
 		batch = new SpriteBatch();
 		sr = new ShapeRenderer();
 		Player.init();
@@ -66,25 +70,22 @@ public class Game extends ApplicationAdapter implements InputProcessor{
 		}
 
 		batch.begin();
-		f.draw(batch, "FPS: "+(int)(1/delta), 0, height);
-
-
-
+		batch.setColor(Color.WHITE);
+		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+		font.draw(batch, "FPS: "+(int)(1/delta), 0, height);
 		Player.p.render(batch);
-
 		for(Enemy e:Enemy.enemies){
 			e.render(batch);
 		}
-
-
 		for(Arrow a:Arrow.arrows )if(a!=null) a.draw(batch);
-
-
-
-
-
 		batch.end();
 
+		batch.begin();
+		batch.enableBlending();
+		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
+		flame.render(batch);
+		batch.end();
+		
 		for(Enemy e:Enemy.enemies){
 			//e.debugRender();
 		}
@@ -96,6 +97,7 @@ public class Game extends ApplicationAdapter implements InputProcessor{
 
 	private void update(float delta) {
 		Player.p.update(delta);
+		flame.update(delta);
 		for(Arrow a:Arrow.arrows){
 			if(a!=null){
 				a.update(delta);

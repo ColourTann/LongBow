@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.mygdx.game.Game;
 import com.mygdx.game.enemies.Enemy;
-import com.mygdx.game.utils.Sink;
+import com.mygdx.game.utils.maths.Sink;
 
 public class Arrow extends Sprite{
 	public static ArrayList<Arrow> arrows = new ArrayList<Arrow>();

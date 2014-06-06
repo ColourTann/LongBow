@@ -3,9 +3,9 @@ package com.mygdx.game.enemies;
 import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.player.Arrow;
 import com.mygdx.game.player.Player;
-import com.mygdx.game.utils.BoxCollider;
-import com.mygdx.game.utils.CircleCollider;
 import com.mygdx.game.utils.Colors;
+import com.mygdx.game.utils.maths.BoxCollider;
+import com.mygdx.game.utils.maths.CircleCollider;
 
 public class Follower extends Enemy{
 	boolean followX;

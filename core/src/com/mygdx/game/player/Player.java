@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.Game;
 import com.mygdx.game.enemies.Enemy;
 import com.mygdx.game.level.Platform;
-import com.mygdx.game.utils.BoxCollider;
-import com.mygdx.game.utils.Collider;
+import com.mygdx.game.utils.maths.BoxCollider;
+import com.mygdx.game.utils.maths.Collider;
 
 public class Player {
 	public static Player p;
