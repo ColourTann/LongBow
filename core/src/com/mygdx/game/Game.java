@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -12,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
 import com.mygdx.game.enemies.Enemy;
+import com.mygdx.game.enemies.Square;
 import com.mygdx.game.level.Fight;
 import com.mygdx.game.level.Platform;
 import com.mygdx.game.level.Fight.FightType;
@@ -20,7 +23,10 @@ import com.mygdx.game.player.Player;
 import com.mygdx.game.utils.Colors;
 import com.mygdx.game.utils.maths.BoxCollider;
 import com.mygdx.game.utils.maths.CircleCollider;
+import com.mygdx.game.utils.particleSystems.Fire;
+import com.mygdx.game.utils.particleSystems.ParticleSystem;
 import com.mygdx.game.utils.particles.Flame;
+import com.mygdx.game.utils.particles.Particle;
 
 public class Game extends ApplicationAdapter implements InputProcessor{
 	SpriteBatch batch;
@@ -30,17 +36,18 @@ public class Game extends ApplicationAdapter implements InputProcessor{
 	public static int height=600;
 	Fight arena;
 	BoxCollider test= new BoxCollider(0, 0, 20,30);
-	Flame flame;
+	
 	@Override
 	public void create () {
-		flame=new Flame(0, 0, 100, 100);
+		
 		font= new BitmapFont();
 		batch = new SpriteBatch();
 		sr = new ShapeRenderer();
 		Player.init();
 		Platform.init();
-		arena=new Fight(FightType.TWINS);
+		arena=new Fight(FightType.SQUARE);
 		Gdx.input.setInputProcessor(this);
+		
 	}
 
 	void init() {
@@ -51,7 +58,7 @@ public class Game extends ApplicationAdapter implements InputProcessor{
 		sr = new ShapeRenderer();
 		Player.init();
 		Platform.init();
-		arena=new Fight(FightType.TWINS);
+		arena=new Fight(FightType.SQUARE);
 		Gdx.input.setInputProcessor(this);
 		
 	}
@@ -83,7 +90,7 @@ public class Game extends ApplicationAdapter implements InputProcessor{
 		batch.begin();
 		batch.enableBlending();
 		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
-		flame.render(batch);
+		ParticleSystem.renderAll(batch);
 		batch.end();
 		
 		for(Enemy e:Enemy.enemies){
@@ -96,8 +103,11 @@ public class Game extends ApplicationAdapter implements InputProcessor{
 	}
 
 	private void update(float delta) {
+		if(Math.random()>.99f){
+		//	ParticleSystem.systems.add(new Fire((float)Math.random()*width, (float)Math.random()*height, Particle.random(600), Particle.random(600),new Color(1,.3f,.1f,1)));
+		}
 		Player.p.update(delta);
-		flame.update(delta);
+		ParticleSystem.updateAll(delta);
 		for(Arrow a:Arrow.arrows){
 			if(a!=null){
 				a.update(delta);

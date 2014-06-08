@@ -19,5 +19,8 @@ public class Colors {
 	public static Color withAlpha(Color source, float alphaMult){
 		return new Color(source.r,source.g,source.b,source.a*alphaMult);
 	}
+	public static Color randomColor(){
+		return new Color((float)Math.random(),(float)Math.random(),(float)Math.random(),1);
+	}
 }
 

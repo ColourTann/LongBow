@@ -10,12 +10,12 @@ import com.mygdx.game.utils.maths.Collider;
 
 public abstract class Enemy {
 	public static ArrayList<Enemy> enemies= new ArrayList<Enemy>();
-	float x,y,dx,dy;
+	public float x,y,dx,dy;
 	Sprite spr;
 	public Collider col;
 	boolean dying,dead;
 	
-	public Enemy(float x,float y, String imgPath){
+	public Enemy(float x,float y,String imgPath){
 		this.x=x;
 		this.y=y;
 		this.spr=new Sprite(new Texture(imgPath));

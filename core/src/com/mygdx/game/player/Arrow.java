@@ -21,6 +21,9 @@ public class Arrow extends Sprite{
 	boolean fired=false;
 	boolean dead=false;
 	private boolean impacted;
+	private boolean stuckIn;
+	public Enemy stuckEnemy;
+	Sink stuckOffset;
 	public Arrow(){
 		super(new Texture("arrow.png"));
 		setScale(3);
@@ -69,6 +72,13 @@ public class Arrow extends Sprite{
 	}
 	
 	public void update(float delta){
+		if(stuckIn){
+			x=stuckEnemy.x+stuckOffset.x;
+			y=stuckEnemy.y+stuckOffset.y;
+			this.setX(x);
+			this.setY(y);
+			return;
+		}
 		if(impacted){
 			return;
 		}
@@ -103,12 +113,22 @@ public class Arrow extends Sprite{
 		int endY=(int)s.y;
 		
 		if(endY<=0||endY>Game.height||endX<0||endX>Game.width){
-			impacted=true;
+		impact();
 			return;
 		}
 		for (Enemy e:Enemy.enemies){
 			e.checkCollision(this);
 		}
+	}
+	
+	public void impact(){
+		impacted=true;
+	}
+	
+	public void stickIn(Enemy e){
+		stuckIn=true;
+		stuckEnemy=e;
+		stuckOffset=new Sink(x-e.x,y-e.y);
 	}
 	
 	public Sink getArrowPoint(){

@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import com.mygdx.game.Game;
 import com.mygdx.game.enemies.Enemy;
 import com.mygdx.game.enemies.Follower;
+import com.mygdx.game.enemies.Square;
 
 public class Fight {
-	public enum FightType{TWINS}
+	public enum FightType{TWINS, SQUARE}
 	public FightType type;
 	public ArrayList<Enemy> combatants = new ArrayList<Enemy>();
 	public Fight (FightType type){
@@ -24,6 +25,11 @@ public class Fight {
 			Enemy.enemies.add(e2);
 			combatants.add(e1);
 			combatants.add(e2);
+			break;
+		case SQUARE:
+			
+			Enemy.enemies.add(new Square(80, Game.height-80));
+			
 			break;
 		default:
 			break;

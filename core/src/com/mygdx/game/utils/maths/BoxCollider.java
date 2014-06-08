@@ -20,8 +20,8 @@ public class BoxCollider extends Collider{
 	
 	@Override
 	public boolean collidePoint(Sink s) {
-	System.out.println("undoded box point collision");
-		return false;
+		if(s.x<x||s.x>x+w||s.y<y||s.y>y+h) return false;
+		return true;
 	}
 
 	@Override
