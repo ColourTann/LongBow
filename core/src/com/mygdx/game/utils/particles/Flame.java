@@ -8,7 +8,7 @@ public class Flame extends Particle{
 	Color c;
 	public Flame(float x, float y, float dx, float dy, Color c){
 		this.c=c;
-		System.out.println(dx);
+		
 		this.x=x;
 		this.y=y;
 		this.dx=dx+random(50);

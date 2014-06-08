@@ -121,7 +121,7 @@ public class Game extends ApplicationAdapter implements InputProcessor{
 		
 		}
 		if(arena.checkVictory()){
-			//System.out.println("won");
+			
 		}
 		
 	}

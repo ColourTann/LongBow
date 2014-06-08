@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.mygdx.game.Game;
 import com.mygdx.game.enemies.Enemy;
 import com.mygdx.game.utils.maths.Sink;
+import com.mygdx.game.utils.particles.Particle;
 
 public class Arrow extends Sprite{
 	public static ArrayList<Arrow> arrows = new ArrayList<Arrow>();
@@ -72,6 +73,7 @@ public class Arrow extends Sprite{
 	}
 	
 	public void update(float delta){
+	
 		if(stuckIn){
 			x=stuckEnemy.x+stuckOffset.x;
 			y=stuckEnemy.y+stuckOffset.y;
@@ -80,10 +82,12 @@ public class Arrow extends Sprite{
 			return;
 		}
 		if(impacted){
+			
 			return;
 		}
 		if(fired){
-			dy-=delta*700;									
+			
+			dy-=delta*700;					
 			x+=dx*delta;
 			y+=dy*delta;
 			rotation=(float) (Math.atan2(dy, dx)*57.296f);
@@ -97,6 +101,7 @@ public class Arrow extends Sprite{
 			rotation=Player.p.bow.angle;
 			if(Player.p.bow.bowFacing==-1)rotation+=180;
 		}
+	
 		setRotation(rotation);
 		this.setX(x);
 		this.setY(y);
@@ -126,6 +131,10 @@ public class Arrow extends Sprite{
 	}
 	
 	public void stickIn(Enemy e){
+		if(e.isDefeated()){
+			return;
+		}
+		
 		stuckIn=true;
 		stuckEnemy=e;
 		stuckOffset=new Sink(x-e.x,y-e.y);
@@ -137,6 +146,17 @@ public class Arrow extends Sprite{
 		int endX=(int)(x+7+ex);
 		int endY=(int)(y+2+ey);
 		return new Sink(endX, endY);
+	}
+	public void unStick() {
+		if(!stuckIn)return;
+		
+		
+		stuckIn=false;
+		impacted=false;
+		fired=true;
+		dx=Particle.random(70);
+		dy=Particle.random(200);
+		//dy=-100;
 	}
 	
 	

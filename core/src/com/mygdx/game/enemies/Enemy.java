@@ -10,7 +10,7 @@ import com.mygdx.game.utils.maths.Collider;
 
 public abstract class Enemy {
 	public static ArrayList<Enemy> enemies= new ArrayList<Enemy>();
-	public float x,y,dx,dy;
+	public float x,y,dx,dy, ticks;
 	Sprite spr;
 	public Collider col;
 	boolean dying,dead;

@@ -70,7 +70,7 @@ public class Player {
 	private void checkCollisions(float delta) {
 		// check downwards //
 		if(dy<0){
-			float down =traceDown((int)x, (int)y, (int) Math.max(1, Math.abs(dy)*delta),Gdx.input.isKeyPressed(Input.Keys.S));
+			float down =traceDown((int)x, (int)y, (int) Math.max(2, Math.abs(dy)*delta),Gdx.input.isKeyPressed(Input.Keys.S));
 
 			if(down>=0){
 				dy=0;
@@ -90,7 +90,7 @@ public class Player {
 	private int rayDown(int startX, int startY, int pixToCheck, boolean ignorePlatforms){
 		for(int i=0;i<pixToCheck;i++){
 			if(startY-i<=0){
-				return startY+i;
+				return startY-i;
 			}
 			for(Platform plat: Platform.platforms){
 				
@@ -98,7 +98,7 @@ public class Player {
 				
 				if(ignorePlatforms&&!plat.edge) continue;
 				
-				if(plat.contains(startX,startY+i)) 	return startY+i;
+				if(plat.contains(startX,startY-i)) 	return startY-i;
 				
 			}
 		}
@@ -109,7 +109,15 @@ public class Player {
 		
 		
 		
-		if(dying) return;
+		if(dying){
+			dy-=delta*gravity;
+			dx*=Math.pow(drag, delta);
+			x+=dx*delta;
+			y+=dy*delta;
+			bow.update(delta, this, 0);
+			arm.update(delta, this);
+			return;
+		}
 		input(delta);
 
 		int walkDir=dx>0?1:-1;
@@ -193,7 +201,7 @@ public class Player {
 		currentArrow=null;
 	}
 	
-	private void die(){
+	public void die(){
 		System.out.println("urk dead");
 		dying=true;
 	}
