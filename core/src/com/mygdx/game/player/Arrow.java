@@ -2,6 +2,7 @@ package com.mygdx.game.player;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.mygdx.game.Game;
 import com.mygdx.game.enemies.Enemy;
+import com.mygdx.game.sound.SoundLibrary;
 import com.mygdx.game.utils.maths.Sink;
 import com.mygdx.game.utils.particles.Particle;
 
@@ -73,7 +75,9 @@ public class Arrow extends Sprite{
 	}
 	
 	public void update(float delta){
-	
+		if(Game.victoryTicks>0){
+			setColor(new Color(1, 1, 1, 1-Game.victoryTicks/2));
+		}
 		if(stuckIn){
 			x=stuckEnemy.x+stuckOffset.x;
 			y=stuckEnemy.y+stuckOffset.y;
@@ -119,6 +123,7 @@ public class Arrow extends Sprite{
 		
 		if(endY<=0||endY>Game.height||endX<0||endX>Game.width){
 		impact();
+		SoundLibrary.miss.play();
 			return;
 		}
 		for (Enemy e:Enemy.enemies){

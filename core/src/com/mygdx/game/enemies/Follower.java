@@ -1,9 +1,11 @@
 package com.mygdx.game.enemies;
 
 import com.badlogic.gdx.graphics.Color;
+import com.mygdx.game.Game;
 import com.mygdx.game.player.Arrow;
 import com.mygdx.game.player.Player;
-import com.mygdx.game.utils.Colors;
+import com.mygdx.game.sound.SoundLibrary;
+import com.mygdx.game.utils.Colours;
 import com.mygdx.game.utils.maths.BoxCollider;
 import com.mygdx.game.utils.maths.CircleCollider;
 
@@ -17,14 +19,18 @@ public class Follower extends Enemy{
 	int height=64;
 	float spd=170;
 	float dyingTime;
-	public Follower(float x, float y, boolean followX, boolean followY) {
+	public Follower(float x, float y, boolean followX, boolean followY, float spdMult) {
+		
 		super(x, y, "follower.png");
+		
+		if(followX&&followY)spd*=.7f;
 		this.followX=followX;
 		this.followY=followY;
 		//spr.setOrigin(16, 16);
-		
+		spd*=spdMult;
 		spr.setScale(2);
-		
+		x=Game.width-60;
+		y=Game.width-60;
 		
 		col=new CircleCollider(x, y, spr.getWidth());
 		//col=new BoxCollider(x, y, 30, 50);
@@ -44,10 +50,10 @@ public class Follower extends Enemy{
 		
 		
 		if(stunTime>0){
-			spr.setColor(Colors.white);	
+			spr.setColor(Colours.white);	
 		}
 		else{
-			spr.setColor(Colors.red);
+			spr.setColor(Colours.red);
 		}
 		
 		
@@ -83,7 +89,10 @@ public class Follower extends Enemy{
 
 	@Override
 	public void collide(Arrow a) {
-		
+		if(stunTime>=maxStunTime-.3f||dying||dead){
+			return;
+		}
+		SoundLibrary.enemyHit.play(.1f);
 		stun();
 		
 	}

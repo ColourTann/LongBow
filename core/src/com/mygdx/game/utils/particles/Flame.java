@@ -2,7 +2,7 @@ package com.mygdx.game.utils.particles;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.utils.Colors;
+import com.mygdx.game.utils.Colours;
 
 public class Flame extends Particle{
 	Color c;
@@ -30,7 +30,7 @@ public class Flame extends Particle{
 
 	@Override
 	public void render(SpriteBatch sb) {
-		sb.setColor(Colors.withAlpha(c, ratio/10));
+		sb.setColor(Colours.withAlpha(c, ratio/10));
 		float size=.4f;
 		//sb.draw(t, x, y);
 		sb.draw(t, x-t.getWidth()/2, y-t.getHeight()/2, t.getWidth()/2, t.getHeight()/2, t.getWidth(), t.getHeight(), size*ratio, size*ratio, 0, 0, 0, t.getWidth(), t.getHeight(), false, false);

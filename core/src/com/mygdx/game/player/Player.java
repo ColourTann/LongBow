@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.Game;
 import com.mygdx.game.enemies.Enemy;
 import com.mygdx.game.level.Platform;
+import com.mygdx.game.sound.SoundLibrary;
 import com.mygdx.game.utils.maths.BoxCollider;
 import com.mygdx.game.utils.maths.Collider;
 
@@ -41,7 +42,7 @@ public class Player {
 	Bow bow;
 	public Collider col;
 
-	private boolean dying;
+	public boolean dying;
 	public Player(){
 		Texture tempPlayerTexture= new Texture("playersheet.png");
 		for(int i=0;i<9;i++){
@@ -54,6 +55,8 @@ public class Player {
 		bow=new Bow();
 		arm=new Arm();
 		col=new BoxCollider(x-apparentWidth/2, 0, apparentWidth, height);
+		x=150;
+		y=0;
 	}
 
 	public float getX(){
@@ -184,6 +187,7 @@ public class Player {
 		else{
 			if(currentArrow!=null){
 				shoot();
+				SoundLibrary.shoot.play(.07f);
 			}
 			timeSpentHolding=0;
 		}
@@ -202,8 +206,12 @@ public class Player {
 	}
 	
 	public void die(){
-		System.out.println("urk dead");
+		
+if(!dying){
+		SoundLibrary.playerDie.play();	
+		}
 		dying=true;
+		
 	}
 
 	private void face(int side){
@@ -260,7 +268,12 @@ public class Player {
 	}
 
 	public void jump() {
-		if(grounded())dy=jumpHeight;
+		if(dying)return;
+		if(grounded()){
+			dy=jumpHeight;
+			SoundLibrary.jump.play(.03f);
+		}
+		
 		
 	}
 }

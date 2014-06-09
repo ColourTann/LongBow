@@ -43,7 +43,7 @@ public class Fire extends ParticleSystem{
 		col.y=y;
 		float freq=.001f;
 		ticks+=delta;
-		if(ticks>freq){
+		while(ticks>freq){
 			ticks-=freq;
 			particles.add(new Flame(x,y,0,0,c));
 		}

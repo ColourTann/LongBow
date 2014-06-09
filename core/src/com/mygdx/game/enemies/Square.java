@@ -6,7 +6,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.Game;
 import com.mygdx.game.player.Arrow;
 import com.mygdx.game.player.Player;
-import com.mygdx.game.utils.Colors;
+import com.mygdx.game.sound.SoundLibrary;
+import com.mygdx.game.utils.Colours;
 import com.mygdx.game.utils.maths.BoxCollider;
 import com.mygdx.game.utils.maths.Sink;
 import com.mygdx.game.utils.particleSystems.Fire;
@@ -16,19 +17,22 @@ import com.mygdx.game.utils.particles.Particle;
 
 
 public class Square extends Enemy {
-	float spd=100;
+	float spd=80;
 	Sink direction;
 	float timeSinceLastHit=500;
-	int health=10;
+	int health=5;
 	float dyingTime=0;
-	float attackTime=1;
+	float attackTime=1.4f;
 	ArrayList<Fire> fires = new ArrayList<Fire>();
-	public Square(float x, float y) {
+	public Square(float x, float y, float spdMult) {
 		super(x, y, "square.png");
 		//spr.setOriginCenter();
 		spr.setScale(3);
 		col=new BoxCollider(x-spr.getWidth()/2*3, y-spr.getHeight()/2*3, 32*3, 32*3);
 		direction=new Sink(1,0);
+		spd+=spdMult*20;
+		health+=spdMult*1.5;
+		attackTime-=spdMult*.13f;
 	}
 
 	@Override
@@ -50,7 +54,7 @@ public class Square extends Enemy {
 			if(dyingTime>1){
 				dead=true;
 			}
-			spr.setColor(Colors.withAlpha(Colors.red, 1-dyingTime));
+			spr.setColor(Colours.withAlpha(Colours.red, 1-dyingTime));
 			return;
 			
 		}
@@ -87,6 +91,7 @@ public class Square extends Enemy {
 	}
 
 	private void attack() {
+		SoundLibrary.enemyShoot.play();
 		Sink from=new Sink(x,y);
 		Sink to=new Sink(Player.p.x,Player.p.y);
 		Sink vector = Sink.getVector(from, to);
@@ -99,6 +104,8 @@ public class Square extends Enemy {
 
 	@Override
 	public void collide(Arrow a) {
+		if(dying||dead)return;
+		SoundLibrary.enemyHit.play(.1f);
 		a.stickIn(this);
 		health--;
 		timeSinceLastHit=0;
